@@ -213,33 +213,22 @@ table.compare .tick{color:var(--mark);font-weight:800}
 table.compare .cross{color:var(--muted);opacity:.4;font-weight:700}
 table.compare tr:last-child td{border-bottom:none}
 
-/* mobile: stack each feature so all 3 plans stay visible, no side-scroll */
+/* mobile: same 3 columns side by side, just smaller and tighter */
 @media(max-width:640px){
   .compare-scroll{overflow-x:visible}
-  table.compare{min-width:0;width:100%}
-  table.compare thead{
-    position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;
+  table.compare{min-width:0;width:100%;font-size:.68rem}
+  table.compare th, table.compare td{
+    padding:.32rem .18rem;
   }
-  table.compare tbody, table.compare tr{display:block;width:100%}
-  table.compare tr{
-    display:flex;flex-wrap:wrap;align-items:center;
-    padding:.5rem 0;border-bottom:1px solid var(--panel-line);
+  table.compare thead th{
+    font-size:.56rem;padding-bottom:.4rem;letter-spacing:.02em;
   }
-  table.compare tr:last-child{border-bottom:none}
-  table.compare td{border-bottom:none;padding:0}
-  table.compare td:first-child{
-    flex:1 0 100%;text-align:left;padding:0 0 .4rem;font-size:.76rem;
+  table.compare td:first-child, table.compare th:first-child{
+    font-size:.68rem;line-height:1.28;padding-right:.3rem;
   }
-  table.compare td:not(:first-child){
-    flex:1;width:auto;white-space:normal;
-    display:flex;flex-direction:column;align-items:center;gap:.15rem;
+  table.compare .tick, table.compare .cross{
     font-size:.78rem;
   }
-  table.compare td:not(:first-child)::before{
-    content:attr(data-label);font-size:.58rem;font-weight:700;color:var(--muted);
-    text-transform:uppercase;letter-spacing:.03em;
-  }
-  table.compare td.is-max::before{color:var(--mark)}
 }
 
 /* google + ia one-liner */
