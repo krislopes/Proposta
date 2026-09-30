@@ -66,7 +66,8 @@ h1{
 }
 .sim-headline{
   font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(1.25rem,4.4vw,1.8rem);
-  color:var(--ink);line-height:1.18;max-width:26rem;margin:0 auto 1.5rem;
+  color:var(--ink);line-height:1.18;max-width:24rem;margin:0 auto 1.5rem;
+  text-wrap:balance;
 }
 .sim-card{
   --sm-bg:#FFFFFF;--sm-line:#E8EAED;--sm-ink:#202124;--sm-muted:#5F6368;--sm-bar:#F1F3F4;
@@ -195,7 +196,7 @@ table.compare{
   font-family:'Bricolage Grotesque',sans-serif;font-size:.82rem;
 }
 table.compare th, table.compare td{
-  padding:.65rem .5rem;text-align:center;border-bottom:1px solid var(--panel-line);
+  padding:.34rem .5rem;text-align:center;border-bottom:1px solid var(--panel-line);
 }
 table.compare th:not(:first-child), table.compare td:not(:first-child){
   width:1%;white-space:nowrap;
@@ -204,13 +205,42 @@ table.compare td:first-child, table.compare th:first-child{
   text-align:left;color:var(--ink);font-weight:600;width:auto;padding-left:0;
 }
 table.compare thead th{
-  font-weight:800;color:var(--ink);font-size:.78rem;letter-spacing:.03em;padding-bottom:.9rem;
+  font-weight:800;color:var(--ink);font-size:.78rem;letter-spacing:.03em;padding-bottom:.6rem;
 }
 table.compare thead th.is-max{color:var(--mark)}
 table.compare tbody td.is-max{background:rgba(255,40,40,.045)}
 table.compare .tick{color:var(--mark);font-weight:800}
-table.compare .dash{color:var(--panel-line)}
+table.compare .cross{color:var(--muted);opacity:.4;font-weight:700}
 table.compare tr:last-child td{border-bottom:none}
+
+/* mobile: stack each feature so all 3 plans stay visible, no side-scroll */
+@media(max-width:640px){
+  .compare-scroll{overflow-x:visible}
+  table.compare{min-width:0;width:100%}
+  table.compare thead{
+    position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;
+  }
+  table.compare tbody, table.compare tr{display:block;width:100%}
+  table.compare tr{
+    display:flex;flex-wrap:wrap;align-items:center;
+    padding:.5rem 0;border-bottom:1px solid var(--panel-line);
+  }
+  table.compare tr:last-child{border-bottom:none}
+  table.compare td{border-bottom:none;padding:0}
+  table.compare td:first-child{
+    flex:1 0 100%;text-align:left;padding:0 0 .4rem;font-size:.76rem;
+  }
+  table.compare td:not(:first-child){
+    flex:1;width:auto;white-space:normal;
+    display:flex;flex-direction:column;align-items:center;gap:.15rem;
+    font-size:.78rem;
+  }
+  table.compare td:not(:first-child)::before{
+    content:attr(data-label);font-size:.58rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.03em;
+  }
+  table.compare td.is-max::before{color:var(--mark)}
+}
 
 /* google + ia one-liner */
 .ia-note{
@@ -330,7 +360,7 @@ footer span{color:var(--mark)}
 
   <section class="sim-wrap">
     <span class="sim-eyebrow reveal">Simulação de busca</span>
-    <h2 class="sim-headline reveal">Imagine o seu negócio chegando ao topo.</h2>
+    <h2 class="sim-headline reveal">Imagine o seu negócio chegando ao&nbsp;topo.</h2>
     <div class="sim-card reveal">
       <div class="sim-top">
         <span class="sim-live"><span class="sim-dot"></span>Simulação em tempo real</span>
@@ -390,21 +420,7 @@ footer span{color:var(--mark)}
         <a class="plan-btn" href="https://wa.me/5554991249159?text=Ol%C3%A1%2C%20recebi%20a%20proposta%20e%20quero%20o%20Google%20Vis%C3%ADvel%20Essencial" target="_blank" rel="noopener">Quero o Essencial</a>
       </div>
 
-      <div class="plan plan-pro reveal" style="--d:.08s">
-        <div class="plan-name">Pro</div>
-        <div class="plan-price">R$ 797</div>
-        <p class="plan-desc">Organizar o perfil e aumentar a confiança antes do contato.</p>
-        <ul class="plan-list">
-          <li>Tudo do Essencial</li>
-          <li>Análise dos concorrentes locais</li>
-          <li>Sistema para gerar avaliações</li>
-          <li>Relatório de antes e depois</li>
-          <li>Preparo básico para buscadores e IA</li>
-        </ul>
-        <a class="plan-btn" href="https://wa.me/5554991249159?text=Ol%C3%A1%2C%20recebi%20a%20proposta%20e%20quero%20o%20Google%20Vis%C3%ADvel%20Pro" target="_blank" rel="noopener">Quero o Pro</a>
-      </div>
-
-      <div class="plan plan-max reveal" style="--d:.16s">
+      <div class="plan plan-max reveal" style="--d:.08s">
         <span class="badge">Mais indicado</span>
         <div class="plan-name">Max</div>
         <div class="plan-price">R$ 997</div>
@@ -418,6 +434,20 @@ footer span{color:var(--mark)}
           <li>Suporte durante a implementação</li>
         </ul>
         <a class="plan-btn" href="https://wa.me/5554991249159?text=Ol%C3%A1%2C%20recebi%20a%20proposta%20e%20quero%20o%20Google%20Vis%C3%ADvel%20Max" target="_blank" rel="noopener">Quero o Max</a>
+      </div>
+
+      <div class="plan plan-pro reveal" style="--d:.16s">
+        <div class="plan-name">Pro</div>
+        <div class="plan-price">R$ 797</div>
+        <p class="plan-desc">Organizar o perfil e aumentar a confiança antes do contato.</p>
+        <ul class="plan-list">
+          <li>Tudo do Essencial</li>
+          <li>Análise dos concorrentes locais</li>
+          <li>Sistema para gerar avaliações</li>
+          <li>Relatório de antes e depois</li>
+          <li>Preparo básico para buscadores e IA</li>
+        </ul>
+        <a class="plan-btn" href="https://wa.me/5554991249159?text=Ol%C3%A1%2C%20recebi%20a%20proposta%20e%20quero%20o%20Google%20Vis%C3%ADvel%20Pro" target="_blank" rel="noopener">Quero o Pro</a>
       </div>
 
     </div>
@@ -437,23 +467,23 @@ footer span{color:var(--mark)}
           </tr>
         </thead>
         <tbody>
-          <tr><td>Perfil do Google revisado e corrigido</td><td class="tick">✓</td><td class="tick">✓</td><td class="tick is-max">✓</td></tr>
-          <tr><td>Categorias, serviços e horários</td><td class="tick">✓</td><td class="tick">✓</td><td class="tick is-max">✓</td></tr>
-          <tr><td>Fotos e informações do negócio</td><td class="tick">✓</td><td class="tick">✓</td><td class="tick is-max">✓</td></tr>
-          <tr><td>WhatsApp e caminhos de contato</td><td class="tick">✓</td><td class="tick">✓</td><td class="tick is-max">✓</td></tr>
-          <tr><td>QR Code para avaliações</td><td class="tick">✓</td><td class="tick">✓</td><td class="tick is-max">✓</td></tr>
-          <tr><td>Análise dos concorrentes locais</td><td class="dash">&middot;</td><td class="tick">✓</td><td class="tick is-max">✓</td></tr>
-          <tr><td>Sistema para gerar avaliações</td><td class="dash">&middot;</td><td class="tick">✓</td><td class="tick is-max">✓</td></tr>
-          <tr><td>Mensagens e respostas prontas</td><td class="dash">&middot;</td><td class="tick">✓</td><td class="tick is-max">✓</td></tr>
-          <tr><td>Relatório de antes e depois</td><td class="dash">&middot;</td><td class="tick">✓</td><td class="tick is-max">✓</td></tr>
-          <tr><td>Preparação básica para Google, buscadores e IA</td><td class="dash">&middot;</td><td class="tick">✓</td><td class="tick is-max">✓</td></tr>
-          <tr><td>Diagnóstico completo da presença digital</td><td class="dash">&middot;</td><td class="dash">&middot;</td><td class="tick is-max">✓</td></tr>
-          <tr><td>Revisão dos caminhos para contato e agendamento</td><td class="dash">&middot;</td><td class="dash">&middot;</td><td class="tick is-max">✓</td></tr>
-          <tr><td>Estrutura de conteúdo sobre serviços e localização</td><td class="dash">&middot;</td><td class="dash">&middot;</td><td class="tick is-max">✓</td></tr>
-          <tr><td>Consistência entre Google, site e outras fontes</td><td class="dash">&middot;</td><td class="dash">&middot;</td><td class="tick is-max">✓</td></tr>
-          <tr><td>Devolutiva individual</td><td class="dash">&middot;</td><td class="dash">&middot;</td><td class="tick is-max">✓</td></tr>
-          <tr><td>Suporte durante a implementação</td><td class="dash">&middot;</td><td class="dash">&middot;</td><td class="tick is-max">✓</td></tr>
-          <tr><td>Entrega</td><td>até 7 dias</td><td>até 14 dias</td><td class="is-max">combinado no diagnóstico</td></tr>
+          <tr><td>Perfil do Google revisado e corrigido</td><td class="tick" data-label="Essencial">✓</td><td class="tick" data-label="Pro">✓</td><td class="tick is-max" data-label="Max">✓</td></tr>
+          <tr><td>Categorias, serviços e horários</td><td class="tick" data-label="Essencial">✓</td><td class="tick" data-label="Pro">✓</td><td class="tick is-max" data-label="Max">✓</td></tr>
+          <tr><td>Fotos e informações do negócio</td><td class="tick" data-label="Essencial">✓</td><td class="tick" data-label="Pro">✓</td><td class="tick is-max" data-label="Max">✓</td></tr>
+          <tr><td>WhatsApp e caminhos de contato</td><td class="tick" data-label="Essencial">✓</td><td class="tick" data-label="Pro">✓</td><td class="tick is-max" data-label="Max">✓</td></tr>
+          <tr><td>QR Code para avaliações</td><td class="tick" data-label="Essencial">✓</td><td class="tick" data-label="Pro">✓</td><td class="tick is-max" data-label="Max">✓</td></tr>
+          <tr><td>Análise dos concorrentes locais</td><td class="cross" data-label="Essencial">✗</td><td class="tick" data-label="Pro">✓</td><td class="tick is-max" data-label="Max">✓</td></tr>
+          <tr><td>Sistema para gerar avaliações</td><td class="cross" data-label="Essencial">✗</td><td class="tick" data-label="Pro">✓</td><td class="tick is-max" data-label="Max">✓</td></tr>
+          <tr><td>Mensagens e respostas prontas</td><td class="cross" data-label="Essencial">✗</td><td class="tick" data-label="Pro">✓</td><td class="tick is-max" data-label="Max">✓</td></tr>
+          <tr><td>Relatório de antes e depois</td><td class="cross" data-label="Essencial">✗</td><td class="tick" data-label="Pro">✓</td><td class="tick is-max" data-label="Max">✓</td></tr>
+          <tr><td>Preparação básica para Google, buscadores e IA</td><td class="cross" data-label="Essencial">✗</td><td class="tick" data-label="Pro">✓</td><td class="tick is-max" data-label="Max">✓</td></tr>
+          <tr><td>Diagnóstico completo da presença digital</td><td class="cross" data-label="Essencial">✗</td><td class="cross" data-label="Pro">✗</td><td class="tick is-max" data-label="Max">✓</td></tr>
+          <tr><td>Revisão dos caminhos para contato e agendamento</td><td class="cross" data-label="Essencial">✗</td><td class="cross" data-label="Pro">✗</td><td class="tick is-max" data-label="Max">✓</td></tr>
+          <tr><td>Estrutura de conteúdo sobre serviços e localização</td><td class="cross" data-label="Essencial">✗</td><td class="cross" data-label="Pro">✗</td><td class="tick is-max" data-label="Max">✓</td></tr>
+          <tr><td>Consistência entre Google, site e outras fontes</td><td class="cross" data-label="Essencial">✗</td><td class="cross" data-label="Pro">✗</td><td class="tick is-max" data-label="Max">✓</td></tr>
+          <tr><td>Devolutiva individual</td><td class="cross" data-label="Essencial">✗</td><td class="cross" data-label="Pro">✗</td><td class="tick is-max" data-label="Max">✓</td></tr>
+          <tr><td>Suporte durante a implementação</td><td class="cross" data-label="Essencial">✗</td><td class="cross" data-label="Pro">✗</td><td class="tick is-max" data-label="Max">✓</td></tr>
+          <tr><td>Entrega</td><td data-label="Essencial">até 7 dias</td><td data-label="Pro">até 14 dias</td><td class="is-max" data-label="Max">até 14 dias</td></tr>
         </tbody>
       </table>
     </div>
@@ -504,7 +534,7 @@ footer span{color:var(--mark)}
       </div>
       <div class="faq-item reveal" style="--d:.2s">
         <button class="faq-q" type="button" aria-expanded="false"><span>Quanto tempo leva?</span><span class="faq-toggle" aria-hidden="true">+</span></button>
-        <div class="faq-a"><strong>Essencial:</strong> até 7 dias. <strong>Pro:</strong> até 14 dias. <strong>Max:</strong> o cronograma é definido no início da implementação, porque envolve uma análise mais completa da presença digital e dos pontos que precisam ser trabalhados. Em todos os casos, o prazo começa após o recebimento das informações e acessos necessários.</div>
+        <div class="faq-a"><strong>Essencial:</strong> até 7 dias. <strong>Pro e Max:</strong> até 14 dias. Em todos os casos, o prazo começa após o recebimento das informações e acessos necessários.</div>
       </div>
       <div class="faq-item reveal" style="--d:.24s">
         <button class="faq-q" type="button" aria-expanded="false"><span>Preciso entender de Google para contratar?</span><span class="faq-toggle" aria-hidden="true">+</span></button>
@@ -521,14 +551,14 @@ footer span{color:var(--mark)}
     <h2 class="reveal">Escolha sua implementação</h2>
     <div class="final-row reveal">
       <a class="final-btn" href="https://wa.me/5554991249159?text=Ol%C3%A1%2C%20recebi%20a%20proposta%20e%20quero%20o%20Google%20Vis%C3%ADvel%20Essencial" target="_blank" rel="noopener">Essencial &middot; R$397</a>
-      <a class="final-btn" href="https://wa.me/5554991249159?text=Ol%C3%A1%2C%20recebi%20a%20proposta%20e%20quero%20o%20Google%20Vis%C3%ADvel%20Pro" target="_blank" rel="noopener">Pro &middot; R$797</a>
       <a class="final-btn is-max" href="https://wa.me/5554991249159?text=Ol%C3%A1%2C%20recebi%20a%20proposta%20e%20quero%20o%20Google%20Vis%C3%ADvel%20Max" target="_blank" rel="noopener">Max &middot; R$997</a>
+      <a class="final-btn" href="https://wa.me/5554991249159?text=Ol%C3%A1%2C%20recebi%20a%20proposta%20e%20quero%20o%20Google%20Vis%C3%ADvel%20Pro" target="_blank" rel="noopener">Pro &middot; R$797</a>
     </div>
   </section>
 
   <div class="landing-topic reveal">
     <span class="landing-topic-label">Landing Page de Alta Conversão</span>
-    <p><span>Precisa de uma landing page para o seu negócio?</span><span>Fale com o Kris e garanta um pacote especial.</span></p>
+    <p><span>Se você gostou dessa landing page e gostaria de ter uma igual,</span><span>fale com Kris e garanta um pacote especial.</span></p>
     <a class="landing-btn" href="https://wa.me/5554991249159?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20a%20Landing%20Page%20de%20Alta%20Convers%C3%A3o" target="_blank" rel="noopener">Falar sobre a Landing Page</a>
   </div>
 
