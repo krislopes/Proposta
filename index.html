@@ -269,19 +269,20 @@ table.compare tr:last-child td{border-bottom:none}
 
 /* faq */
 .faq-title{
-  text-align:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;
-  font-size:clamp(1.15rem,3.4vw,1.4rem);color:var(--ink);margin-bottom:1.3rem;
+  text-align:left;max-width:38rem;margin:0 auto 1.1rem;
+  font-family:'Bricolage Grotesque',sans-serif;font-weight:800;
+  font-size:clamp(.95rem,3vw,1.4rem);color:var(--ink);
 }
 .faq{max-width:38rem;margin:0 auto;display:flex;flex-direction:column;gap:.2rem}
 .faq-item{border-bottom:1px solid var(--panel-line)}
 .faq-q{
   width:100%;display:flex;align-items:center;justify-content:space-between;gap:1rem;
-  background:none;border:none;text-align:left;cursor:pointer;padding:.95rem 0;
-  font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:.94rem;color:var(--ink);
+  background:none;border:none;text-align:left;cursor:pointer;padding:.8rem 0;
+  font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:.82rem;color:var(--ink);
 }
 .faq-toggle{
-  flex-shrink:0;width:1.5rem;height:1.5rem;border-radius:50%;border:1px solid var(--panel-line);
-  display:flex;align-items:center;justify-content:center;font-size:1.05rem;line-height:1;color:var(--muted);
+  flex-shrink:0;width:1.3rem;height:1.3rem;border-radius:50%;border:1px solid var(--panel-line);
+  display:flex;align-items:center;justify-content:center;font-size:.92rem;line-height:1;color:var(--muted);
   transition:transform .25s ease,background .25s ease,color .25s ease,border-color .25s ease;
 }
 .faq-item.is-open .faq-toggle{transform:rotate(45deg);background:var(--mark);color:#fff;border-color:var(--mark)}
@@ -498,6 +499,15 @@ footer span{color:var(--mark)}
     <p class="bonus-window reveal">Condição válida até 10 de outubro de 2026.</p>
   </section>
 
+  <section class="final-cta">
+    <h2 class="reveal">Escolha sua implementação</h2>
+    <div class="final-row reveal">
+      <a class="final-btn" href="https://wa.me/5554991249159?text=Ol%C3%A1%2C%20recebi%20a%20proposta%20e%20quero%20o%20Google%20Vis%C3%ADvel%20Essencial" target="_blank" rel="noopener">Essencial &middot; R$397</a>
+      <a class="final-btn is-max" href="https://wa.me/5554991249159?text=Ol%C3%A1%2C%20recebi%20a%20proposta%20e%20quero%20o%20Google%20Vis%C3%ADvel%20Max" target="_blank" rel="noopener">Max &middot; R$997</a>
+      <a class="final-btn" href="https://wa.me/5554991249159?text=Ol%C3%A1%2C%20recebi%20a%20proposta%20e%20quero%20o%20Google%20Vis%C3%ADvel%20Pro" target="_blank" rel="noopener">Pro &middot; R$797</a>
+    </div>
+  </section>
+
   <section>
     <h2 class="faq-title reveal">Antes de escolher, tire as últimas dúvidas.</h2>
     <div class="faq">
@@ -533,15 +543,6 @@ footer span{color:var(--mark)}
         <button class="faq-q" type="button" aria-expanded="false"><span>O perfil fica pronto e eu nunca mais preciso mexer?</span><span class="faq-toggle" aria-hidden="true">+</span></button>
         <div class="faq-a">Não deveria. Informações mudam, fotos envelhecem, novas avaliações chegam, serviços mudam. <strong>A implementação coloca a casa em ordem. Depois, o perfil precisa continuar representando o negócio que existe hoje.</strong> Por isso as modalidades mais completas incluem orientação sobre o que observar depois da entrega.</div>
       </div>
-    </div>
-  </section>
-
-  <section class="final-cta">
-    <h2 class="reveal">Escolha sua implementação</h2>
-    <div class="final-row reveal">
-      <a class="final-btn" href="https://wa.me/5554991249159?text=Ol%C3%A1%2C%20recebi%20a%20proposta%20e%20quero%20o%20Google%20Vis%C3%ADvel%20Essencial" target="_blank" rel="noopener">Essencial &middot; R$397</a>
-      <a class="final-btn is-max" href="https://wa.me/5554991249159?text=Ol%C3%A1%2C%20recebi%20a%20proposta%20e%20quero%20o%20Google%20Vis%C3%ADvel%20Max" target="_blank" rel="noopener">Max &middot; R$997</a>
-      <a class="final-btn" href="https://wa.me/5554991249159?text=Ol%C3%A1%2C%20recebi%20a%20proposta%20e%20quero%20o%20Google%20Vis%C3%ADvel%20Pro" target="_blank" rel="noopener">Pro &middot; R$797</a>
     </div>
   </section>
 
