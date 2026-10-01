@@ -319,8 +319,7 @@ table.compare tr:last-child td{border-bottom:none}
   display:block;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:.82rem;
   letter-spacing:.06em;text-transform:uppercase;color:var(--ink);margin-bottom:.6rem;
 }
-.landing-topic p{font-size:.9rem;color:var(--muted);line-height:1.6;max-width:26rem;margin:0 auto 1.2rem}
-.landing-topic p span{display:block}
+.landing-topic p{font-size:.9rem;color:var(--muted);line-height:1.6;max-width:26rem;margin:0 auto 1.2rem;text-wrap:balance}
 .landing-btn{
   display:inline-block;text-decoration:none;
   background:transparent;color:var(--ink);border:1px solid var(--panel-line);
@@ -548,7 +547,7 @@ footer span{color:var(--mark)}
 
   <div class="landing-topic reveal">
     <span class="landing-topic-label">Landing Page de Alta Conversão</span>
-    <p><span>Se você gostou dessa landing page e gostaria de ter uma igual,</span><span>fale com Kris e garanta um pacote especial.</span></p>
+    <p>Se você gostou dessa landing page e gostaria de ter uma igual, fale com Kris e garanta um pacote especial.</p>
     <a class="landing-btn" href="https://wa.me/5554991249159?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20a%20Landing%20Page%20de%20Alta%20Convers%C3%A3o" target="_blank" rel="noopener">Falar sobre a Landing Page</a>
   </div>
 
@@ -600,12 +599,20 @@ footer span{color:var(--mark)}
   tick();
   setInterval(tick, 1000);
 
-  // FAQ accordion
-  document.querySelectorAll('.faq-item').forEach(function(item){
+  // FAQ accordion (only one question open at a time)
+  var faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(function(item){
     var btn = item.querySelector('.faq-q');
     if(!btn) return;
     btn.addEventListener('click', function(){
       var isOpen = item.classList.contains('is-open');
+      faqItems.forEach(function(other){
+        if(other !== item){
+          other.classList.remove('is-open');
+          var otherBtn = other.querySelector('.faq-q');
+          if(otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
+        }
+      });
       item.classList.toggle('is-open', !isOpen);
       btn.setAttribute('aria-expanded', String(!isOpen));
     });
